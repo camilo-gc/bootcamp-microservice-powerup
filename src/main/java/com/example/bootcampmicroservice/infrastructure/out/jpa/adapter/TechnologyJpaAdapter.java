@@ -2,10 +2,14 @@ package com.example.bootcampmicroservice.infrastructure.out.jpa.adapter;
 
 import com.example.bootcampmicroservice.domain.model.TechnologyModel;
 import com.example.bootcampmicroservice.domain.spi.ITechnologyPersistencePort;
+import com.example.bootcampmicroservice.infrastructure.exception.NoDataFoundException;
 import com.example.bootcampmicroservice.infrastructure.exception.TechnologyNameAlreadyExistsException;
+import com.example.bootcampmicroservice.infrastructure.out.jpa.entity.TechnologyEntity;
 import com.example.bootcampmicroservice.infrastructure.out.jpa.mapper.TechnologyMapper;
 import com.example.bootcampmicroservice.infrastructure.out.jpa.repository.ITechnologyRepository;
 import lombok.RequiredArgsConstructor;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 public class TechnologyJpaAdapter implements ITechnologyPersistencePort {
@@ -23,13 +27,13 @@ public class TechnologyJpaAdapter implements ITechnologyPersistencePort {
         );
     }
 
-//    @Override
-//    public List<TechnologyModel> getAllTechnologies() {
-//        List<TechnologyEntity> technologyEntityList = technologyRepository.findAll();
-//        if (technologyEntityList.isEmpty()) {
-//            throw new NoDataFoundException();
-//        }
-//        return technologyMapper.toTechnologyList(technologyEntityList);
-//    }
+    @Override
+    public List<TechnologyModel> getAllTechnologies() {
+        List<TechnologyEntity> technologyEntityList = technologyRepository.findAll();
+        if (technologyEntityList.isEmpty()) {
+            throw new NoDataFoundException();
+        }
+        return technologyMapper.toTechnologyList(technologyEntityList);
+    }
 
 }

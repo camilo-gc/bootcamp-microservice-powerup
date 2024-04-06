@@ -4,6 +4,8 @@ import com.example.bootcampmicroservice.domain.api.ITechnologyServicePort;
 import com.example.bootcampmicroservice.domain.model.TechnologyModel;
 import com.example.bootcampmicroservice.domain.spi.ITechnologyPersistencePort;
 
+import java.util.List;
+
 public class TechnologyUseCase implements ITechnologyServicePort {
 
     private final ITechnologyPersistencePort technologyPersistencePort;
@@ -17,9 +19,9 @@ public class TechnologyUseCase implements ITechnologyServicePort {
         return technologyPersistencePort.saveTechnology(technologyModel);
     }
 
-//    @Override
-//    public List<TechnologyModel> getAllTechnologies() {
-//        return technologyPersistencePort.getAllTechnologies();
-//    }
+    @Override
+    public List<TechnologyModel> getAllTechnologies() {
+        return technologyPersistencePort.getAllTechnologies();
+    }
 
 }
